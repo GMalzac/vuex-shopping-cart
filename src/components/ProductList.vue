@@ -10,6 +10,9 @@
 </template>
 
 <script>
+
+import shop from '@/api/shop'
+
 export default {
 
   name: 'ProductList',
@@ -19,6 +22,12 @@ export default {
       products: []
 
     }
+  },
+
+  created () {
+    shop.getProducts(products => {
+      this.products = products
+    })
   }
 }
 </script>
