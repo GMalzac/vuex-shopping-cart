@@ -1,24 +1,27 @@
-import Vuex from 'Vuex'
-
 import Vue from 'vue'
+import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-new Vue.Store({
-  state: { //data
+export default new Vuex.Store({
+  state: { // data
     products: []
   },
-  getters: { //computed properties
-    productsCount () {
-      //...
+  getters: { // computed properties
+    availableProducts (state, getters) {
+      return state.products.filter(product => product.inventory > 0)
     }
   },
   actions: {
-    //make API call
+    fetchProducts () {
+      // make API call
+      // run setProducts mutation
+    }
   },
   mutations: { //set and update the state
-    setProducts () {
-      //update products
+    setProducts (state, products) {
+      state.products = products
+      // update products
     }
   }
 })
